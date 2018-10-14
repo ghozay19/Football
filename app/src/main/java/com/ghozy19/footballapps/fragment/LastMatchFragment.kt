@@ -39,29 +39,6 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class LastMatchFragment : Fragment(), LastMatchView {
-    override fun showLoading() {
-        progressBar.visible()
-    }
-
-    override fun hideLoading() {
-        progressBar.invisible()
-    }
-
-    override fun showNull() {
-        toast("No data Available")
-    }
-
-    override fun showLastMatch(data: List<EventsItem>) {
-
-        swipeRefreshLayout.isRefreshing = false
-        match.clear()
-        if (data != null) {
-            match.addAll(data)
-        }
-        adapter.notifyDataSetChanged()
-
-    }
-
 
     private lateinit var listMatch: RecyclerView
     private lateinit var progressBar: ProgressBar
@@ -124,6 +101,31 @@ class LastMatchFragment : Fragment(), LastMatchView {
         return view
 
     }
+
+    override fun showLoading() {
+        progressBar.visible()
+    }
+
+    override fun hideLoading() {
+        progressBar.invisible()
+    }
+
+    override fun showNull() {
+        toast("No data Available")
+    }
+
+    override fun showLastMatch(data: List<EventsItem>) {
+
+        swipeRefreshLayout.isRefreshing = false
+        match.clear()
+        if (data != null) {
+            match.addAll(data)
+        }
+        adapter.notifyDataSetChanged()
+
+    }
+
+
 
 
 }
