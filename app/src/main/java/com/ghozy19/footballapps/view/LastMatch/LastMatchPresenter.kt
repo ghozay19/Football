@@ -21,7 +21,7 @@ class LastMatchPresenter(
                     ResponseEvent::class.java)
             uiThread {
                 view.hideLoading()
-                view.showLastMatch(data.events!!)
+                view.showLastMatch(data.events)
                 if (data.events?.size == null){
                     view.showNull()
                 }

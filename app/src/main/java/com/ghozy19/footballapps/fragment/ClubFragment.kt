@@ -15,6 +15,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.Spinner
+import com.ghozy19.footballapps.DetailClubActivity
+import com.ghozy19.footballapps.DetailMatchActivity
 import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.adapter.ClubAdapter
 import com.ghozy19.footballapps.api.ApiRepository
@@ -25,6 +27,7 @@ import com.ghozy19.footballapps.view.Club.ClubPresenter
 import com.ghozy19.footballapps.view.Club.ClubView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_club.view.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 
@@ -74,7 +77,8 @@ class ClubFragment : Fragment(), ClubView {
 
 
         adapter = ClubAdapter(ctx, club) {
-
+            ctx.startActivity<DetailClubActivity>(
+            "id" to it.teamId)
         }
 
 

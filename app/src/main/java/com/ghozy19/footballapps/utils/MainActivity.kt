@@ -39,26 +39,31 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadNextMatchFragment(savedInstanceState: Bundle?){
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.main_container, NextMatchFragment(), NextMatchFragment::class.simpleName)
                     .commit()
+
         }
     }
 
     private fun loadLastMatchFragment(savedInstanceState: Bundle?){
-        supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.main_container, LastMatchFragment(), LastMatchFragment::class.simpleName)
-                .commit()
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.main_container, LastMatchFragment(), LastMatchFragment::class.simpleName)
+                    .commit()
+        }
     }
 
-    private fun loadClubFragement(savedInstanceState: Bundle?){
+    private fun loadClubFragement(savedInstanceState: Bundle?) {
+        if (savedInstanceState == null){
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_container, ClubFragment(), ClubFragment::class.simpleName)
                 .commit()
+    }
     }
 
 }

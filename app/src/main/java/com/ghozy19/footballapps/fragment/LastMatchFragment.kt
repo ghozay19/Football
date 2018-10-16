@@ -14,6 +14,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.Spinner
+import com.ghozy19.footballapps.DetailMatchActivity
 import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.adapter.MatchAdapter
 import com.ghozy19.footballapps.api.ApiRepository
@@ -24,6 +25,7 @@ import com.ghozy19.footballapps.view.LastMatch.LastMatchPresenter
 import com.ghozy19.footballapps.view.LastMatch.LastMatchView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_next_match.view.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.toast
@@ -39,6 +41,7 @@ private const val ARG_PARAM2 = "param2"
  *
  */
 class LastMatchFragment : Fragment(), LastMatchView {
+
 
     private lateinit var listMatch: RecyclerView
     private lateinit var progressBar: ProgressBar
@@ -85,7 +88,11 @@ class LastMatchFragment : Fragment(), LastMatchView {
 
 
         adapter = MatchAdapter(ctx, match) {
-
+           ctx.startActivity<DetailMatchActivity>(
+                   "idEvent" to  it.idEvent,
+                   "idHome" to it.idHomeTeam,
+            "idAway" to it.idAwayTeam
+           )
         }
 
         listMatch = view.findViewById(R.id.rvViewMatch)
@@ -114,7 +121,7 @@ class LastMatchFragment : Fragment(), LastMatchView {
         toast("No data Available")
     }
 
-    override fun showLastMatch(data: List<EventsItem>) {
+    override fun showLastMatch(data: List<EventsItem>?) {
 
         swipeRefreshLayout.isRefreshing = false
         match.clear()
@@ -124,8 +131,6 @@ class LastMatchFragment : Fragment(), LastMatchView {
         adapter.notifyDataSetChanged()
 
     }
-
-
 
 
 }

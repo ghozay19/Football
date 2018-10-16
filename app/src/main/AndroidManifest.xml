@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DetailMatchActivity"></activity>
+        <activity android:name=".DetailMatchActivity" />
+        <activity android:name=".DetailClubActivity"></activity>
     </application>
 
 </manifest>

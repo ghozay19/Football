@@ -9,7 +9,7 @@ object TheSportDBApi {
     }
 
 
-    fun getClubDetail(teamId: String?): String {
+    fun getDetailClub(teamId: String?): String {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookupteam.php?id=" + teamId
     }
 
@@ -23,6 +23,12 @@ object TheSportDBApi {
     fun getLeagueLastMatch(idLeagueLast: String?): String {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/eventspastleague.php?id=" + idLeagueLast
 
+    }
+
+
+////        https://www.thesportsdb.com/api/v1/json/1/lookupevent.php?id=441613
+        fun getMatchDetail(idEvent: String?) : String{
+    return  BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" +"/lookupevent.php?id=" + idEvent
 
     }
 

@@ -1,0 +1,45 @@
+<RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <ImageView
+        android:id="@+id/clubLogoDetail"
+        android:layout_margin="16dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_launcher_background"/>
+
+    <TextView
+        android:id="@+id/clubNameDetail"
+        android:layout_below="@id/clubLogoDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/clubYearsDetail"
+        android:layout_below="@id/clubLogoDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+       />
+
+    <TextView
+        android:id="@+id/clubStadiumDetail"
+        android:layout_below="@id/clubLogoDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="estabilished"/>
+
+    <TextView
+        android:id="@+id/clubDescDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/clubYearsDetail"
+        android:layout_margin="16dp"/>
+
+
+</RelativeLayout>

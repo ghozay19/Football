@@ -24,6 +24,7 @@ import com.ghozy19.footballapps.view.NextMatch.NextMatchPresenter
 import com.ghozy19.footballapps.view.NextMatch.NextMatchView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_next_match.view.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.toast
@@ -77,7 +78,11 @@ class NextMatchFragment : Fragment(), NextMatchView {
 
 
         adapter = MatchAdapter(ctx, match) {
-
+            ctx.startActivity<DetailMatchActivity>(
+                    "idEvent" to  it.idEvent,
+            "idHome" to it.idHomeTeam,
+            "idAway" to it.idAwayTeam
+            )
         }
 
         listMatch = view.findViewById(R.id.rvViewMatch)
