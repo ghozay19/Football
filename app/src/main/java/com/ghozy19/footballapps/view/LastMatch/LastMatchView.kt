@@ -7,6 +7,5 @@ interface LastMatchView {
     fun showLoading()
     fun hideLoading()
     fun showNull()
-//    fun showLastMatch(data: List<EventsItem>)
-fun showLastMatch(data: List<EventsItem>?)
+    fun showLastMatch(data: List<EventsItem>?)
 }

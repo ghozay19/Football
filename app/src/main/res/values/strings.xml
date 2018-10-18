@@ -18,6 +18,9 @@
     <string name="striker">Striker</string>
     <string name="substitute">Substitute</string>
     <string name="tanggal">Tanggal</string>
+    <string name="last_match">Last Match</string>
+    <string name="next_match">Next Match</string>
+    <string name="club">Club</string>
 
     <array name="league">
         <item>English Premier League</item>

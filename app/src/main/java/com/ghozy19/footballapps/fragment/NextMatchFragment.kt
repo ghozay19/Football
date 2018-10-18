@@ -44,7 +44,7 @@ class NextMatchFragment : Fragment(), NextMatchView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+
         val view = inflater.inflate(R.layout.fragment_next_match, container, false)
 
         spinner = view.listspinner
@@ -71,7 +71,7 @@ class NextMatchFragment : Fragment(), NextMatchView {
                 val getLeague = spinner.selectedItemPosition
                 leagueName = spinnerItemsId[getLeague].toString()
                 presenter.getNextMatch(leagueName)
-//
+
             }
 
         }

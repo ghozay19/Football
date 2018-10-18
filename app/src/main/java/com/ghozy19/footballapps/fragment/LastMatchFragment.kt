@@ -30,16 +30,6 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.toast
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- *
- */
 class LastMatchFragment : Fragment(), LastMatchView {
 
 
@@ -55,7 +45,7 @@ class LastMatchFragment : Fragment(), LastMatchView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
+
         val view = inflater.inflate(R.layout.fragment_next_match, container, false)
 
         spinner = view.listspinner
@@ -81,7 +71,7 @@ class LastMatchFragment : Fragment(), LastMatchView {
                 val getLeague = spinner.selectedItemPosition
                 leagueName = spinnerItemsId[getLeague].toString()
                 presenter.getLastMatch(leagueName)
-//
+
             }
 
         }

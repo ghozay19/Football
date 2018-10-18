@@ -4,21 +4,21 @@
     <item
         android:id="@+id/lastMatch"
         android:enabled="true"
-        android:title="Last Match"
-        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/last_match"
+        android:icon="@drawable/goalbox"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/nextMatch"
         android:enabled="true"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="Next Match"
+        android:icon="@drawable/goalbox"
+        android:title="@string/next_match"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/clubs"
         android:enabled="true"
-        android:title="Club"
-        android:icon="@drawable/ic_launcher_background"
+        android:title="@string/club"
+        android:icon="@drawable/football"
         app:showAsAction="ifRoom"/>
 </menu>
