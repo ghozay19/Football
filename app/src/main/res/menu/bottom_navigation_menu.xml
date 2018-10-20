@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/match"
+        android:enabled="true"
+        android:icon="@drawable/goalbox"
+        android:title="@string/next_match"
+        app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/lastMatch"
         android:enabled="true"
@@ -8,12 +17,6 @@
         android:icon="@drawable/goalbox"
         app:showAsAction="ifRoom"/>
 
-    <item
-        android:id="@+id/nextMatch"
-        android:enabled="true"
-        android:icon="@drawable/goalbox"
-        android:title="@string/next_match"
-        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/clubs"

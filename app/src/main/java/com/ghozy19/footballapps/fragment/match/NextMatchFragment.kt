@@ -1,4 +1,4 @@
-package com.ghozy19.footballapps.fragment
+package com.ghozy19.footballapps.fragment.match
 
 
 import android.graphics.Color
@@ -14,15 +14,14 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.Spinner
-import com.ghozy19.footballapps.DetailMatchActivity
-import com.ghozy19.footballapps.R
+import com.ghozy19.footballapps.*
 import com.ghozy19.footballapps.adapter.MatchAdapter
 import com.ghozy19.footballapps.api.ApiRepository
 import com.ghozy19.footballapps.model.matchevent.EventsItem
 import com.ghozy19.footballapps.utils.invisible
 import com.ghozy19.footballapps.utils.visible
-import com.ghozy19.footballapps.view.LastMatch.LastMatchPresenter
-import com.ghozy19.footballapps.view.LastMatch.LastMatchView
+import com.ghozy19.footballapps.view.NextMatch.NextMatchPresenter
+import com.ghozy19.footballapps.view.NextMatch.NextMatchView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_next_match.view.*
 import org.jetbrains.anko.startActivity
@@ -30,18 +29,18 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.toast
 
-class LastMatchFragment : Fragment(), LastMatchView {
+
+class NextMatchFragment : Fragment(), NextMatchView {
 
 
     private lateinit var listMatch: RecyclerView
     private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var spinner: Spinner
-    private lateinit var presenter: LastMatchPresenter
+    private lateinit var presenter: NextMatchPresenter
     private lateinit var adapter: MatchAdapter
     private lateinit var leagueName: String
     private var match: MutableList<EventsItem> = mutableListOf()
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -53,9 +52,10 @@ class LastMatchFragment : Fragment(), LastMatchView {
         progressBar = view.progressBar
 
 
+
         val request = ApiRepository()
         val gson = Gson()
-        presenter = LastMatchPresenter(this, request, gson)
+        presenter = NextMatchPresenter(this, request, gson)
 
 
         val spinnerItems = resources.getStringArray(R.array.league)
@@ -70,7 +70,7 @@ class LastMatchFragment : Fragment(), LastMatchView {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val getLeague = spinner.selectedItemPosition
                 leagueName = spinnerItemsId[getLeague].toString()
-                presenter.getLastMatch(leagueName)
+                presenter.getNextMatch(leagueName)
 
             }
 
@@ -78,11 +78,11 @@ class LastMatchFragment : Fragment(), LastMatchView {
 
 
         adapter = MatchAdapter(ctx, match) {
-           ctx.startActivity<DetailMatchActivity>(
-                   "idEvent" to  it.idEvent,
-                   "idHome" to it.idHomeTeam,
+            ctx.startActivity<DetailMatchActivity>(
+                    "idEvent" to  it.idEvent,
+            "idHome" to it.idHomeTeam,
             "idAway" to it.idAwayTeam
-           )
+            )
         }
 
         listMatch = view.findViewById(R.id.rvViewMatch)
@@ -90,7 +90,7 @@ class LastMatchFragment : Fragment(), LastMatchView {
         listMatch.adapter = adapter
 
         swipeRefreshLayout.onRefresh {
-            presenter.getLastMatch(leagueName)
+            presenter.getNextMatch(leagueName)
         }
         swipeRefreshLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW)
 
@@ -99,7 +99,8 @@ class LastMatchFragment : Fragment(), LastMatchView {
 
     }
 
-    override fun showLoading() {
+
+    override fun showLaoding() {
         progressBar.visible()
     }
 
@@ -107,20 +108,20 @@ class LastMatchFragment : Fragment(), LastMatchView {
         progressBar.invisible()
     }
 
-    override fun showNull() {
-        toast("No data Available")
-    }
-
-    override fun showLastMatch(data: List<EventsItem>?) {
-
+    override fun showNextMatch(data: List<EventsItem>?) {
         swipeRefreshLayout.isRefreshing = false
         match.clear()
         if (data != null) {
             match.addAll(data)
         }
         adapter.notifyDataSetChanged()
-
     }
+
+    override fun showNull() {
+
+        toast("There is no upcoming match(es)")
+    }
+
 
 
 }
