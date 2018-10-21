@@ -1,4 +1,4 @@
-package com.ghozy19.footballapps.fragment.match
+package com.ghozy19.footballapps.favorite
 
 
 import android.os.Bundle
@@ -10,11 +10,10 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.ghozy19.footballapps.R
-import kotlinx.android.synthetic.main.fragment_match.*
+import com.ghozy19.footballapps.fragment.match.LastMatchFragment
 
-class MatchFragment : Fragment() {
+class FavoriteFragment : Fragment() {
 
     private lateinit var mViewPager: ViewPager
     private lateinit var mTablayout: TabLayout
@@ -23,6 +22,7 @@ class MatchFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        //TODO gantifragment
         val view = inflater.inflate(R.layout.fragment_match, container, false)
 
 
@@ -54,13 +54,13 @@ class MatchFragment : Fragment() {
 
     private inner class sliderAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-        internal var now_playing = resources.getString(R.string.next_match)
+        internal var now_playing = resources.getString(R.string.club)
         internal var up_coming = resources.getString(R.string.last_match)
         internal val tabs = arrayOf(now_playing, up_coming)
 
         override fun getItem(position: Int): Fragment? {
             when (position) {
-                0 -> return NextMatchFragment()
+                0 -> return FavoriteClubFragment()
                 1 -> return LastMatchFragment()
             }
             return null

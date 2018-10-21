@@ -7,15 +7,8 @@
         android:id="@+id/match"
         android:enabled="true"
         android:icon="@drawable/goalbox"
-        android:title="@string/next_match"
+        android:title="@string/match"
         app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/lastMatch"
-        android:enabled="true"
-        android:title="@string/last_match"
-        android:icon="@drawable/goalbox"
-        app:showAsAction="ifRoom"/>
 
 
     <item
@@ -24,4 +17,12 @@
         android:title="@string/club"
         android:icon="@drawable/football"
         app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/lastMatch"
+        android:enabled="true"
+        android:title="@string/Favorite"
+        android:icon="@drawable/ic_favorites"
+        app:showAsAction="ifRoom"/>
+
 </menu>

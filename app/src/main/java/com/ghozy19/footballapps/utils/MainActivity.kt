@@ -1,16 +1,13 @@
 package com.ghozy19.footballapps.utils
 
-
-
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.ghozy19.footballapps.R
-import com.ghozy19.footballapps.fragment.ClubFragment
 import com.ghozy19.footballapps.R.id.*
 import com.ghozy19.footballapps.R.layout.activity_main
-import com.ghozy19.footballapps.fragment.match.LastMatchFragment
+import com.ghozy19.footballapps.favorite.FavoriteFragment
+import com.ghozy19.footballapps.fragment.ClubFragment
 import com.ghozy19.footballapps.fragment.match.MatchFragment
-import com.ghozy19.footballapps.fragment.match.NextMatchFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -28,7 +25,7 @@ class MainActivity : AppCompatActivity() {
                     loadMatchFragment(savedInstanceState)
                 }
                 lastMatch -> {
-                    loadLastMatchFragment(savedInstanceState)
+                    loadFavoriteFragment(savedInstanceState)
                 }
                 clubs -> {
                     loadClubFragement(savedInstanceState)
@@ -39,15 +36,6 @@ class MainActivity : AppCompatActivity() {
         bottom_navigation.selectedItemId = match
     }
 
-//    private fun loadNextMatchFragment(savedInstanceState: Bundle?){
-//        if (savedInstanceState == null) {
-//            supportFragmentManager
-//                    .beginTransaction()
-//                    .replace(R.id.main_container, NextMatchFragment(), NextMatchFragment::class.simpleName)
-//                    .commit()
-//
-//        }
-//    }
 
     private fun loadMatchFragment(savedInstanceState: Bundle?){
         if (savedInstanceState == null) {
@@ -59,11 +47,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadLastMatchFragment(savedInstanceState: Bundle?){
+
+    private fun loadFavoriteFragment(savedInstanceState: Bundle?){
         if (savedInstanceState == null) {
             supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.main_container, LastMatchFragment(), LastMatchFragment::class.simpleName)
+                    .replace(R.id.main_container, FavoriteFragment(), FavoriteFragment::class.simpleName)
                     .commit()
         }
     }
