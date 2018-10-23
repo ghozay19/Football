@@ -3,7 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="game_week">Game Week</string>
+    <string name="game_week"> Game Week</string>
     <string name="date_event">Sun, 01 Jan 1999</string>
     <string name="vs">vs</string>
     <string name="details">Details</string>
@@ -23,6 +23,10 @@
     <string name="club">Club</string>
     <string name="match">Match</string>
     <string name="Favorite">Favorite</string>
+    <string name="favorites">Favorite</string>
+    <string name="stadium"> Stadium</string>
+    <string name="detailClub">Detail Club</string>
+    <string name="detailMatch">Match Detail</string>
 
     <array name="league">
         <item>English Premier League</item>
