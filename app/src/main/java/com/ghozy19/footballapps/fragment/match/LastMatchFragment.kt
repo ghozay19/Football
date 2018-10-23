@@ -78,11 +78,11 @@ class LastMatchFragment : Fragment(), LastMatchView {
 
 
         adapter = MatchAdapter(ctx, match) {
-           ctx.startActivity<DetailMatchActivity>(
-                   "idEvent" to  it.idEvent,
-                   "idHome" to it.idHomeTeam,
-            "idAway" to it.idAwayTeam
-           )
+            ctx.startActivity<DetailMatchActivity>(
+                    "idEvent" to it.idEvent,
+                    "idHome" to it.idHomeTeam,
+                    "idAway" to it.idAwayTeam
+            )
         }
 
         listMatch = view.findViewById(R.id.rvViewMatch)

@@ -33,6 +33,10 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_match)
 
+        //TODO cek lagi broh
+        supportActionBar?.title = getString(R.string.detailMatch)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val intent = intent
         idEvent = intent.getStringExtra("idEvent")
         idHome = intent.getStringExtra("idHome")
@@ -66,7 +70,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
     override fun showDetailClub(data1: List<Club>?, data2: List<Club>?) {
 
-        tvStadium.text = data1?.get(0)?.teamStadium + " Stadium"
+        tvStadium.text = data1?.get(0)?.teamStadium + getString(R.string.stadium)
 
         //HomeTeam
         tvClubHome.text = data1?.get(0)?.teamName
@@ -88,14 +92,14 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         if (data?.get(index = 0) != null) {
 
             tvNameLeague.text = data.get(index = 0).strLeague
-            tvGameWeek.text = "Game Week " + data.get(index = 0).intRound
+            tvGameWeek.text = getString(R.string.game_week) + data.get(index = 0).intRound
 
             val date = strToDate(data.get(index = 0).dateEvent)
             val dateTime = toGMTFormat(data.get(index = 0).dateEvent, data.get(index = 0).strTime)
             val timeNew = SimpleDateFormat("HH:mm").format(dateTime)
             val dateNew = changeFormatDate(date)
 
-            tvDateEventDetail.text =  dateNew
+            tvDateEventDetail.text = dateNew
             tvTimeEventDetail.text = timeNew
 
 

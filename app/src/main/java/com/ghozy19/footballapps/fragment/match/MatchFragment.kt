@@ -25,9 +25,6 @@ class MatchFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_match, container, false)
 
-
-//        var viewPager = viewpager_main
-
         mViewPager = view.findViewById(R.id.viewpager_main) as ViewPager
         mViewPager.adapter = sliderAdapter(childFragmentManager)
 
@@ -54,9 +51,9 @@ class MatchFragment : Fragment() {
 
     private inner class sliderAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-        internal var now_playing = resources.getString(R.string.next_match)
-        internal var up_coming = resources.getString(R.string.last_match)
-        internal val tabs = arrayOf(now_playing, up_coming)
+        internal var nextMatch = resources.getString(R.string.next_match)
+        internal var lastMatch = resources.getString(R.string.last_match)
+        internal val tabs = arrayOf(nextMatch, lastMatch)
 
         override fun getItem(position: Int): Fragment? {
             when (position) {

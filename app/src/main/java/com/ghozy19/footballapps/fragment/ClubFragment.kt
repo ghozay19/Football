@@ -39,7 +39,7 @@ class ClubFragment : Fragment(), ClubView {
     private lateinit var progressBar: ProgressBar
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var spinner: Spinner
-    private lateinit var adapter: ClubAdapter //TODO ini harusnya club adapter
+    private lateinit var adapter: ClubAdapter
     private lateinit var presenter: ClubPresenter
     private lateinit var leagueName: String
     private var club: MutableList<Club> = mutableListOf()
