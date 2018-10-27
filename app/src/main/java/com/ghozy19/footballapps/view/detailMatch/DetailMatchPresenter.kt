@@ -5,6 +5,9 @@ import com.ghozy19.footballapps.api.TheSportDBApi
 import com.ghozy19.footballapps.model.matchevent.ResponseEvent
 import com.ghozy19.footballapps.model.team.ResponseClub
 import com.google.gson.Gson
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import org.jetbrains.anko.coroutines.experimental.bg
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -13,42 +16,42 @@ class DetailMatchPresenter(
         private val apiRepository: ApiRepository,
         private val gson: Gson) {
 
-    fun getDetailClub(home: String?, away: String?){
+    fun getDetailClub(home: String?, away: String?) {
         view.showLoading()
-        doAsync {
-            val dataHome = gson.fromJson(
-                    apiRepository.doRequest(TheSportDBApi.getDetailClub(home)),
-                    ResponseClub::class.java
-            )
-            val dataAway = gson.fromJson(
-                    apiRepository.doRequest(TheSportDBApi.getDetailClub(away)),
-                    ResponseClub::class.java
-            )
-
-            uiThread {
-                view.hideLoading()
-                view.showDetailClub(dataHome.teams, dataAway.teams)
+        async(UI) {
+            val dataHome = bg {
+                gson.fromJson(
+                        apiRepository.doRequest(TheSportDBApi.getDetailClub(home)),
+                        ResponseClub::class.java
+                )
             }
-
-        }
-    }
-
-    fun getDetailMatch(league: String?){
-        view.showLoading()
-        doAsync {
-
-            val data = gson.fromJson(
-                    apiRepository.doRequest(TheSportDBApi.getMatchDetail(league)),
-                            ResponseEvent::class.java)
-
-            uiThread {
-                view.hideLoading()
-                view.showDetailMatch(data.events)
+            val dataAway = bg {
+                gson.fromJson(
+                        apiRepository.doRequest(TheSportDBApi.getDetailClub(away)),
+                        ResponseClub::class.java
+                )
             }
-
+            view.hideLoading()
+            view.showDetailClub(dataHome.await().teams, dataAway.await().teams)
         }
+
     }
 
 
+    fun getDetailMatch(league: String?) {
+        view.showLoading()
+        async(UI) {
 
+            val data = bg {
+                gson.fromJson(
+                        apiRepository.doRequest(TheSportDBApi.getMatchDetail(league)),
+                        ResponseEvent::class.java)
+
+            }
+            view.hideLoading()
+            view.showDetailMatch(data.await().events)
+        }
+
+    }
 }
+

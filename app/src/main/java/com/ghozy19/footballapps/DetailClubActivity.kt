@@ -133,7 +133,7 @@ class DetailClubActivity : AppCompatActivity(), DetailClubView {
                         FavoriteClub.TEAM_ID to clubs.teamId,
                         FavoriteClub.TEAM_NAME to clubs.teamName,
                         FavoriteClub.TEAM_BADGE to clubs.teamBadge)
-                Log.d("datanya masuk ga ", clubs.teamId)
+                Log.d("datanya masuk ? ", clubs.teamId)
 
 
             }
