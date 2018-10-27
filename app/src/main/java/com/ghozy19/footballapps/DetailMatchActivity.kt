@@ -1,23 +1,31 @@
 package com.ghozy19.footballapps
 
-import android.support.v7.app.AppCompatActivity
+import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ProgressBar
 import com.bumptech.glide.Glide
 import com.ghozy19.footballapps.api.ApiRepository
+import com.ghozy19.footballapps.db.FavoriteMatch
+import com.ghozy19.footballapps.db.database
 import com.ghozy19.footballapps.model.matchevent.EventsItem
 import com.ghozy19.footballapps.model.team.Club
 import com.ghozy19.footballapps.utils.*
-import com.ghozy19.footballapps.view.DetailMatch.DetailMatchPresenter
-import com.ghozy19.footballapps.view.DetailMatch.DetailMatchView
+import com.ghozy19.footballapps.view.detailMatch.DetailMatchPresenter
+import com.ghozy19.footballapps.view.detailMatch.DetailMatchView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_detail_match.*
-import kotlinx.android.synthetic.main.match_item.view.*
+import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.delete
+import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.toast
-import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
 
 class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
@@ -26,21 +34,23 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
     private lateinit var presenter: DetailMatchPresenter
 
     private lateinit var idEvent: String
-    private lateinit var idHome: String
-    private lateinit var idAway: String
+
+    private var menuItem: Menu? = null
+    private var isFavorite: Boolean = false
+
+    private lateinit var events: EventsItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_match)
 
-        //TODO cek lagi broh
         supportActionBar?.title = getString(R.string.detailMatch)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        events = EventsItem()
+
         val intent = intent
         idEvent = intent.getStringExtra("idEvent")
-        idHome = intent.getStringExtra("idHome")
-        idAway = intent.getStringExtra("idAway")
 
         Log.d("apakah ada id eventnya?", idEvent)
         progressBar = progressBarDm
@@ -49,8 +59,8 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         val gson = Gson()
         presenter = DetailMatchPresenter(this, request, gson)
         presenter.getDetailMatch(idEvent)
-        presenter.getDetailClub(idHome, idAway)
 
+        favoriteState()
 
     }
 
@@ -70,7 +80,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
     override fun showDetailClub(data1: List<Club>?, data2: List<Club>?) {
 
-        tvStadium.text = data1?.get(0)?.teamStadium + getString(R.string.stadium)
+        tvStadium.text = data1?.get(0)?.teamStadium
 
         //HomeTeam
         tvClubHome.text = data1?.get(0)?.teamName
@@ -89,7 +99,20 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
     override fun showDetailMatch(data: List<EventsItem>?) {
 
-        if (data?.get(index = 0) != null) {
+
+        events.idEvent = data?.get(index = 0)?.idEvent
+        events.strHomeTeam = data?.get(index = 0)?.strHomeTeam
+        events.strAwayTeam = data?.get(index = 0)?.strAwayTeam
+        events.intHomeScore = data?.get(index = 0)?.intHomeScore
+        events.intAwayScore = data?.get(index = 0)?.intAwayScore
+
+
+        val idHomeTeam = data?.get(index = 0)?.idHomeTeam
+        val idAwayTeam = data?.get(index = 0)?.idAwayTeam
+
+        presenter.getDetailClub(idHomeTeam, idAwayTeam)
+
+        if (data?.get(index = 0)?.intHomeScore != null) {
 
             tvNameLeague.text = data.get(index = 0).strLeague
             tvGameWeek.text = getString(R.string.game_week) + data.get(index = 0).intRound
@@ -127,10 +150,108 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
             tvAwayRed.text = data.get(index = 0).strAwayRedCards?.replace(";", "\n")
             tvAwayOnTarget.text = data.get(index = 0).intAwayShots as CharSequence?
         } else {
-            toast("False")
+            tvNameLeague.text = data?.get(index = 0)?.strLeague.toString()
+
+            tvGameWeek.text = getString(R.string.game_week) + data?.get(index = 0)?.intRound
+
+
+            val date = strToDate(data?.get(index = 0)?.dateEvent)
+            val dateTime = toGMTFormat(data?.get(index = 0)?.dateEvent, data?.get(index = 0)?.strTime)
+            val timeNew = SimpleDateFormat("HH:mm").format(dateTime)
+            val dateNew = changeFormatDate(date)
+
+            tvDateEventDetail.text = dateNew
+            tvTimeEventDetail.text = timeNew
+
+
         }
 
 
     }
+
+    private fun favoriteState() {
+        database.use {
+            val result = select(FavoriteMatch.TABLE_FAVORITE_MATCH)
+                    .whereArgs("(EVENT_ID = {idEvent})",
+                            "idEvent" to idEvent)
+            val favorite = result.parseList(classParser<FavoriteMatch>())
+            if (!favorite.isEmpty()) isFavorite = true
+        }
+    }
+
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu, menu)
+        menuItem = menu
+        setFavorite()
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            R.id.add_to_favorite -> {
+                if (isFavorite) removeFromFavorite() else addToFavorite()
+
+                isFavorite = !isFavorite
+                setFavorite()
+
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun addToFavorite() {
+
+        try {
+            database.use {
+
+
+
+                insert(FavoriteMatch.TABLE_FAVORITE_MATCH,
+                        FavoriteMatch.EVENT_ID to events.idEvent.toString(),
+                        FavoriteMatch.HOME_TEAM_NAME to events.strHomeTeam.toString(),
+                        FavoriteMatch.HOME_TEAM_SCORE to events.intHomeScore.toString(),
+                        FavoriteMatch.AWAY_TEAM_NAME to events.strAwayTeam.toString(),
+                        FavoriteMatch.AWAY_TEAM_SCORE to events.intAwayScore.toString(),
+                        FavoriteMatch.DATE_EVENT to tvDateEventDetail.text.toString(),
+                        FavoriteMatch.TIME_EVENT to tvTimeEventDetail.text.toString())
+
+                Log.i("db", "mashook pak Eko ! :" + events.strHomeTeam)
+            }
+            snackbar(progressBar, "Added to favorite").show()
+        } catch (e: SQLiteConstraintException) {
+            snackbar(progressBar, e.localizedMessage).show()
+        }
+    }
+
+    private fun removeFromFavorite() {
+        try {
+            database.use {
+                delete(FavoriteMatch.TABLE_FAVORITE_MATCH, "(EVENT_ID = {idEvent})",
+                        "idEvent" to idEvent)
+            }
+            snackbar(progressBar, "Removed to favorite").show()
+
+        } catch (e: SQLiteConstraintException) {
+            snackbar(progressBar, e.localizedMessage).show()
+        }
+    }
+
+
+    private fun setFavorite() {
+        if (isFavorite)
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_added_to_favorites)
+        else
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_add_to_favorites)
+    }
+
+
 }
 

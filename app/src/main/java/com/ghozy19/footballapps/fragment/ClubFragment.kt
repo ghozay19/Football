@@ -16,15 +16,14 @@ import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.Spinner
 import com.ghozy19.footballapps.DetailClubActivity
-import com.ghozy19.footballapps.DetailMatchActivity
 import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.adapter.ClubAdapter
 import com.ghozy19.footballapps.api.ApiRepository
 import com.ghozy19.footballapps.model.team.Club
 import com.ghozy19.footballapps.utils.invisible
 import com.ghozy19.footballapps.utils.visible
-import com.ghozy19.footballapps.view.Club.ClubPresenter
-import com.ghozy19.footballapps.view.Club.ClubView
+import com.ghozy19.footballapps.view.club.ClubPresenter
+import com.ghozy19.footballapps.view.club.ClubView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_club.view.*
 import org.jetbrains.anko.startActivity

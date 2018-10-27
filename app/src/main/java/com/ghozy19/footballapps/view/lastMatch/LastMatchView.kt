@@ -1,4 +1,4 @@
-package com.ghozy19.footballapps.view.LastMatch
+package com.ghozy19.footballapps.view.lastMatch
 
 import com.ghozy19.footballapps.model.matchevent.EventsItem
 

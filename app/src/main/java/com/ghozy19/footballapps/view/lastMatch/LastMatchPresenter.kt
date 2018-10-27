@@ -1,4 +1,4 @@
-package com.ghozy19.footballapps.view.LastMatch
+package com.ghozy19.footballapps.view.lastMatch
 
 import com.ghozy19.footballapps.api.ApiRepository
 import com.ghozy19.footballapps.api.TheSportDBApi
@@ -30,25 +30,5 @@ class LastMatchPresenter(
         }
     }
 
-//TODO Hapus
-//    fun getNextMatch(league: String){
-//        view.showLaoding()
-//        doAsync {
-//            val data = gson.fromJson(apiRepository.doRequest(TheSportDBApi
-//                    .getLeagueNextMatch(league)),
-//                    ResponseEvent::class.java)
-//
-//            uiThread {
-//                view.hideLoading()
-//                view.showNextMatch(data.events)
-//                if (data.events?.size == null){
-//                    view.showNull()
-//                }
-//
-//
-//            }
-//        }
-//    }
-//}
 
 }

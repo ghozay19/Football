@@ -1,4 +1,4 @@
-package com.ghozy19.footballapps.view.Club
+package com.ghozy19.footballapps.view.club
 
 import com.ghozy19.footballapps.api.ApiRepository
 import com.ghozy19.footballapps.api.TheSportDBApi

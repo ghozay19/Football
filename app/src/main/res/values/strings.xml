@@ -1,22 +1,21 @@
 <resources>
-    <string name="app_name">KADE 2</string>
+    <string name="app_name">Football Apps</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="game_week"> Game Week</string>
+    <string name="game_week"> Game Week </string>
     <string name="date_event">Sun, 01 Jan 1999</string>
-    <string name="vs">vs</string>
-    <string name="details">Details</string>
+    <string name="details">DETAILS</string>
     <string name="shoots_on_target">Shoots On Target</string>
     <string name="yellow_card">Yellow Card</string>
     <string name="red_card">Red Card</string>
     <string name="goal_scorer">Goal Scorer</string>
-    <string name="lineups">Lineups</string>
+    <string name="lineups">LINEUPS</string>
     <string name="goalkeeper">GoalKeeper</string>
     <string name="defender">Defender</string>
     <string name="midfielder">Midfielder</string>
     <string name="striker">Striker</string>
-    <string name="substitute">Substitute</string>
+    <string name="substitute">SUBSTITUTE</string>
     <string name="tanggal">Tanggal</string>
     <string name="last_match">Last Match</string>
     <string name="next_match">Next Match</string>
@@ -27,6 +26,8 @@
     <string name="stadium"> Stadium</string>
     <string name="detailClub">Detail Club</string>
     <string name="detailMatch">Match Detail</string>
+    <string name="vs">vs</string>
+
 
     <array name="league">
         <item>English Premier League</item>

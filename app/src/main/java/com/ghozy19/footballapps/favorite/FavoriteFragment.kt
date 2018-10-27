@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.favorite.club.FavoriteClubFragment
+import com.ghozy19.footballapps.favorite.match.FavoriteMatchFragment
 import com.ghozy19.footballapps.fragment.match.LastMatchFragment
 
 class FavoriteFragment : Fragment() {
@@ -22,8 +23,6 @@ class FavoriteFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        //TODO gantifragment
         val view = inflater.inflate(R.layout.fragment_favorite, container, false)
 
 
@@ -53,14 +52,14 @@ class FavoriteFragment : Fragment() {
 
     private inner class sliderAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-        internal var now_playing = resources.getString(R.string.club)
-        internal var up_coming = resources.getString(R.string.match)
-        internal val tabs = arrayOf(now_playing, up_coming)
+        internal var club = resources.getString(R.string.club)
+        internal var match = resources.getString(R.string.match)
+        internal val tabs = arrayOf(club, match)
 
         override fun getItem(position: Int): Fragment? {
             when (position) {
                 0 -> return FavoriteClubFragment()
-                1 -> return MatchFavFragment()
+                1 -> return FavoriteMatchFragment()
             }
             return null
         }

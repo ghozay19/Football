@@ -14,13 +14,13 @@ import com.ghozy19.footballapps.R.drawable.ic_added_to_favorites
 import com.ghozy19.footballapps.R.id.add_to_favorite
 import com.ghozy19.footballapps.R.menu.detail_menu
 import com.ghozy19.footballapps.api.ApiRepository
-import com.ghozy19.footballapps.db.Favorite
+import com.ghozy19.footballapps.db.FavoriteClub
 import com.ghozy19.footballapps.db.database
 import com.ghozy19.footballapps.model.team.Club
 import com.ghozy19.footballapps.utils.invisible
 import com.ghozy19.footballapps.utils.visible
-import com.ghozy19.footballapps.view.DetailClub.DetailClubPresenter
-import com.ghozy19.footballapps.view.DetailClub.DetailClubView
+import com.ghozy19.footballapps.view.detailClub.DetailClubPresenter
+import com.ghozy19.footballapps.view.detailClub.DetailClubView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_detail_club.*
 import org.jetbrains.anko.db.classParser
@@ -47,7 +47,6 @@ class DetailClubActivity : AppCompatActivity(), DetailClubView {
 
         progressBar = progressBarDc
 
-        //TODO
         supportActionBar?.title = getString(R.string.detailClub)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -66,10 +65,10 @@ class DetailClubActivity : AppCompatActivity(), DetailClubView {
 
     private fun favoriteState() {
         database.use {
-            val result = select(Favorite.TABLE_FAVORITE)
+            val result = select(FavoriteClub.TABLE_FAVORITE)
                     .whereArgs("(TEAM_ID = {id})",
                             "id" to id)
-            val favorite = result.parseList(classParser<Favorite>())
+            val favorite = result.parseList(classParser<FavoriteClub>())
             if (!favorite.isEmpty()) isFavorite = true
         }
     }
@@ -100,7 +99,6 @@ class DetailClubActivity : AppCompatActivity(), DetailClubView {
 
     }
 
-    //TODO FAvorite
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(detail_menu, menu)
@@ -129,15 +127,12 @@ class DetailClubActivity : AppCompatActivity(), DetailClubView {
     }
 
     private fun addToFavorite() {
-        //TODO add ke daatabase udah ok , tinggal rapihin kodingan untuk fragmentclub, addsetcheck favorit
-
-        //TODO yang ditambahin cukup id name badge aja
         try {
             database.use {
-                insert(Favorite.TABLE_FAVORITE,
-                        Favorite.TEAM_ID to clubs.teamId,
-                        Favorite.TEAM_NAME to clubs.teamName,
-                        Favorite.TEAM_BADGE to clubs.teamBadge)
+                insert(FavoriteClub.TABLE_FAVORITE,
+                        FavoriteClub.TEAM_ID to clubs.teamId,
+                        FavoriteClub.TEAM_NAME to clubs.teamName,
+                        FavoriteClub.TEAM_BADGE to clubs.teamBadge)
                 Log.d("datanya masuk ga ", clubs.teamId)
 
 
@@ -151,7 +146,7 @@ class DetailClubActivity : AppCompatActivity(), DetailClubView {
     private fun removeFromFavorite() {
         try {
             database.use {
-                delete(Favorite.TABLE_FAVORITE, "(TEAM_ID = {id})",
+                delete(FavoriteClub.TABLE_FAVORITE, "(TEAM_ID = {id})",
                         "id" to id)
             }
             snackbar(progressBar, "Removed to favorite").show()

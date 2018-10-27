@@ -20,8 +20,8 @@ import com.ghozy19.footballapps.api.ApiRepository
 import com.ghozy19.footballapps.model.matchevent.EventsItem
 import com.ghozy19.footballapps.utils.invisible
 import com.ghozy19.footballapps.utils.visible
-import com.ghozy19.footballapps.view.NextMatch.NextMatchPresenter
-import com.ghozy19.footballapps.view.NextMatch.NextMatchView
+import com.ghozy19.footballapps.view.nextMatch.NextMatchPresenter
+import com.ghozy19.footballapps.view.nextMatch.NextMatchView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_next_match.view.*
 import org.jetbrains.anko.startActivity

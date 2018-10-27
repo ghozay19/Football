@@ -39,7 +39,7 @@ data class EventsItem(
 	val strAwayLineupMidfield: String? = null,
 
 	@field:SerializedName("idEvent")
-	val idEvent: String? = null,
+	var idEvent: String? = null,
 
 	@field:SerializedName("intRound")
 	val intRound: String? = null,
@@ -51,7 +51,7 @@ data class EventsItem(
 	val idHomeTeam: String? = null,
 
 	@field:SerializedName("intHomeScore")
-	val intHomeScore: String? = null,
+	var intHomeScore: String? = null,
 
 	@field:SerializedName("dateEvent")
 	val dateEvent: String? = null,
@@ -60,7 +60,7 @@ data class EventsItem(
 	val strCountry: Any? = null,
 
 	@field:SerializedName("strAwayTeam")
-	val strAwayTeam: String? = null,
+	var strAwayTeam: String? = null,
 
 	@field:SerializedName("strHomeLineupMidfield")
 	val strHomeLineupMidfield: String? = null,
@@ -141,7 +141,7 @@ data class EventsItem(
 	val strAwayLineupDefense: String? = null,
 
 	@field:SerializedName("strHomeTeam")
-	val strHomeTeam: String? = null,
+    var strHomeTeam: String? = null,
 
 	@field:SerializedName("strThumb")
 	val strThumb: Any? = null,
@@ -150,7 +150,7 @@ data class EventsItem(
 	val strLeague: String? = null,
 
 	@field:SerializedName("intAwayScore")
-	val intAwayScore: String? = null,
+	var intAwayScore: String? = null,
 
 	@field:SerializedName("strCity")
 	val strCity: Any? = null,

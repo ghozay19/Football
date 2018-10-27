@@ -1,4 +1,4 @@
-package com.ghozy19.footballapps.view.DetailMatch
+package com.ghozy19.footballapps.view.detailMatch
 
 import com.ghozy19.footballapps.api.ApiRepository
 import com.ghozy19.footballapps.api.TheSportDBApi

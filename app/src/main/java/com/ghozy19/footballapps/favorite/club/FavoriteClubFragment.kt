@@ -12,7 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ghozy19.footballapps.DetailClubActivity
 import com.ghozy19.footballapps.R
-import com.ghozy19.footballapps.db.Favorite
+import com.ghozy19.footballapps.db.FavoriteClub
 import com.ghozy19.footballapps.db.database
 import kotlinx.android.synthetic.main.fragment_favorite_club.view.*
 import org.jetbrains.anko.db.classParser
@@ -23,19 +23,16 @@ import org.jetbrains.anko.support.v4.onRefresh
 
 
 class FavoriteClubFragment : Fragment() {
-//TODO cek dan ketik ulang
 
 
-    private var favClub: MutableList<Favorite> = mutableListOf()
+    private var favClub: MutableList<FavoriteClub> = mutableListOf()
     private lateinit var adapter: ClubFavAdapter
     private lateinit var list: RecyclerView
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
-//    private var id: String = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_favorite_club, container, false)
 
         swipeRefreshLayout = view.swipeRefreshFav
@@ -62,15 +59,15 @@ class FavoriteClubFragment : Fragment() {
         swipeRefreshLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW)
 
 
-        return view;
+        return view
     }
 
 
-    private fun showFavoriteClub(){
+    private fun showFavoriteClub() {
         context?.database?.use {
             swipeRefreshLayout.isRefreshing = false
-            val result = select(Favorite.TABLE_FAVORITE)
-            val favoriteClub = result.parseList(classParser<Favorite>())
+            val result = select(FavoriteClub.TABLE_FAVORITE)
+            val favoriteClub = result.parseList(classParser<FavoriteClub>())
             favClub.addAll(favoriteClub)
             adapter.notifyDataSetChanged()
         }

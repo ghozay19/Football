@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import org.jetbrains.anko.db.*
 
-class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "FavoriteTeam.db", null, 1) {
+class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "db_favorite.db", null, 1) {
     companion object {
         private var instance: DbHelper? = null
 
@@ -18,17 +18,28 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "FavoriteTeam.db", n
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-//TODO kalo berhasil tinggal tambahin table match
         db?.createTable(
-                Favorite.TABLE_FAVORITE, true,
-                Favorite.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
-                Favorite.TEAM_ID to TEXT + UNIQUE,
-                Favorite.TEAM_NAME to TEXT,
-                Favorite.TEAM_BADGE to TEXT)
+                FavoriteClub.TABLE_FAVORITE, true,
+                FavoriteClub.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+                FavoriteClub.TEAM_ID to TEXT + UNIQUE,
+                FavoriteClub.TEAM_NAME to TEXT,
+                FavoriteClub.TEAM_BADGE to TEXT)
+
+        db?.createTable(
+                FavoriteMatch.TABLE_FAVORITE_MATCH, true,
+                FavoriteMatch.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+                FavoriteMatch.EVENT_ID to TEXT + UNIQUE,
+                FavoriteMatch.HOME_TEAM_NAME to TEXT,
+                FavoriteMatch.HOME_TEAM_SCORE to TEXT,
+                FavoriteMatch.AWAY_TEAM_NAME to TEXT,
+                FavoriteMatch.AWAY_TEAM_SCORE to TEXT,
+                FavoriteMatch.DATE_EVENT to TEXT,
+                FavoriteMatch.TIME_EVENT to TEXT)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db?.dropTable(Favorite.TABLE_FAVORITE, true)
+        db?.dropTable(FavoriteClub.TABLE_FAVORITE, true)
+        db?.dropTable(FavoriteMatch.TABLE_FAVORITE_MATCH, true)
     }
 }
 

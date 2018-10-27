@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.ghozy19.footballapps.R
-import com.ghozy19.footballapps.db.Favorite
+import com.ghozy19.footballapps.db.FavoriteClub
 import kotlinx.android.synthetic.main.club_item.view.*
 
-class ClubFavAdapter(private val context: Context, private val fav: List<Favorite>, private val listener: (Favorite)  -> Unit)
+class ClubFavAdapter(private val context: Context, private val fav: List<FavoriteClub>, private val listener: (FavoriteClub)  -> Unit)
     :RecyclerView.Adapter<ClubFavAdapter.ClubFavViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): ClubFavViewHolder = ClubFavViewHolder(LayoutInflater.from(context).inflate(R.layout.club_item, parent, false))
@@ -24,7 +24,7 @@ class ClubFavAdapter(private val context: Context, private val fav: List<Favorit
 
     class ClubFavViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        fun bindItem(fav: Favorite, listener: (Favorite) -> Unit){
+        fun bindItem(fav: FavoriteClub, listener: (FavoriteClub) -> Unit){
 
             itemView.tvClubName.text = fav.teamName
             Glide.with(itemView.context)
