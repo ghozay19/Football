@@ -47,7 +47,7 @@ class NextMatchFragment : Fragment(), NextMatchView {
 
         val view = inflater.inflate(R.layout.fragment_next_match, container, false)
 
-        spinner = view.listspinner
+        spinner = view.listSpinner
         swipeRefreshLayout = view.swipeRefresh
         progressBar = view.progressBar
 

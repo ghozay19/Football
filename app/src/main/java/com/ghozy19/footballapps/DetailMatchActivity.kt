@@ -225,7 +225,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
                 Log.i("db", "mashook pak Eko ! :" + events.strHomeTeam)
             }
-            snackbar(progressBar, "Added to favorite").show()
+            snackbar(progressBar, getString(R.string.add_to_favorite)).show()
         } catch (e: SQLiteConstraintException) {
             snackbar(progressBar, e.localizedMessage).show()
         }
@@ -237,7 +237,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
                 delete(FavoriteMatch.TABLE_FAVORITE_MATCH, "(EVENT_ID = {idEvent})",
                         "idEvent" to idEvent)
             }
-            snackbar(progressBar, "Removed to favorite").show()
+            snackbar(progressBar, getString(R.string.removed_from_favorite)).show()
 
         } catch (e: SQLiteConstraintException) {
             snackbar(progressBar, e.localizedMessage).show()

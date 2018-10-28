@@ -14,12 +14,12 @@
         </Spinner>
 
         <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/swipeRefresh"
+            android:id="@+id/swipeRefreshLast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvViewMatch"
+                android:id="@+id/rvViewMatchLast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
@@ -29,7 +29,7 @@
     </LinearLayout>
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBarLast"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"/>

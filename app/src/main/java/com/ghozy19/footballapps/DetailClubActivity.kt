@@ -137,7 +137,7 @@ class DetailClubActivity : AppCompatActivity(), DetailClubView {
 
 
             }
-            snackbar(progressBar, "Added to favorite").show()
+            snackbar(progressBar, getString(R.string.add_to_favorite)).show()
         } catch (e: SQLiteConstraintException) {
             snackbar(progressBar, e.localizedMessage).show()
         }
@@ -149,7 +149,7 @@ class DetailClubActivity : AppCompatActivity(), DetailClubView {
                 delete(FavoriteClub.TABLE_FAVORITE, "(TEAM_ID = {id})",
                         "id" to id)
             }
-            snackbar(progressBar, "Removed to favorite").show()
+            snackbar(progressBar, getString(R.string.removed_from_favorite)).show()
 
         } catch (e: SQLiteConstraintException) {
             snackbar(progressBar, e.localizedMessage).show()

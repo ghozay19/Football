@@ -28,6 +28,9 @@
     <string name="detailClub">Detail Club</string>
     <string name="detailMatch">Match Detail</string>
     <string name="vs">vs</string>
+    <string name="add_to_favorite">Added to favorite</string>
+    <string name="removed_from_favorite">Removed to favorite</string>
+    <string name="match_fragment">match</string>
 
 
     <array name="league">

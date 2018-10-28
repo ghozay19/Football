@@ -53,7 +53,7 @@ class FavoriteFragment : Fragment() {
     private inner class sliderAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
         internal var club = resources.getString(R.string.club)
-        internal var match = resources.getString(R.string.match)
+        internal var match = resources.getString(R.string.match_fragment)
         internal val tabs = arrayOf(club, match)
 
         override fun getItem(position: Int): Fragment? {

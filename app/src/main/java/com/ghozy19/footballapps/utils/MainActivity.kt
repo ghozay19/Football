@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
                 match -> {
                     loadMatchFragment(savedInstanceState)
                 }
-                lastMatch -> {
+                favorite -> {
                     loadFavoriteFragment(savedInstanceState)
                 }
                 clubs -> {

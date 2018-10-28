@@ -24,6 +24,7 @@ import com.ghozy19.footballapps.utils.visible
 import com.ghozy19.footballapps.view.lastMatch.LastMatchPresenter
 import com.ghozy19.footballapps.view.lastMatch.LastMatchView
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.fragment_last_match.view.*
 import kotlinx.android.synthetic.main.fragment_next_match.view.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.ctx
@@ -46,11 +47,11 @@ class LastMatchFragment : Fragment(), LastMatchView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.fragment_next_match, container, false)
+        val view = inflater.inflate(R.layout.fragment_last_match, container, false)
 
         spinner = view.listspinner
-        swipeRefreshLayout = view.swipeRefresh
-        progressBar = view.progressBar
+        swipeRefreshLayout = view.swipeRefreshLast
+        progressBar = view.progressBarLast
 
 
         val request = ApiRepository()
@@ -85,7 +86,7 @@ class LastMatchFragment : Fragment(), LastMatchView {
             )
         }
 
-        listMatch = view.findViewById(R.id.rvViewMatch)
+        listMatch = view.findViewById(R.id.rvViewMatchLast)
         listMatch.layoutManager = LinearLayoutManager(context)
         listMatch.adapter = adapter
 
