@@ -3,6 +3,7 @@ package com.ghozy19.footballapps.view.club
 import com.ghozy19.footballapps.api.ApiRepository
 import com.ghozy19.footballapps.api.TheSportDBApi
 import com.ghozy19.footballapps.model.team.ResponseClub
+import com.ghozy19.footballapps.utils.CoroutineContextProvider
 import com.google.gson.Gson
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
@@ -13,12 +14,13 @@ import org.jetbrains.anko.uiThread
 class ClubPresenter(
         private val view: ClubView,
         private val apiRepository: ApiRepository,
-        private val gson: Gson) {
+        private val gson: Gson,
+        private val context: CoroutineContextProvider = CoroutineContextProvider()) {
 
     fun getClubList(league: String?) {
         view.showLoading()
 
-        async(UI){
+        async(context.main){
             val data = bg {
                 gson.fromJson(apiRepository
                         .doRequest(TheSportDBApi.getClub(league)),

@@ -4,6 +4,7 @@ import com.ghozy19.footballapps.api.ApiRepository
 import com.ghozy19.footballapps.api.TheSportDBApi
 import com.ghozy19.footballapps.model.team.Club
 import com.ghozy19.footballapps.model.team.ResponseClub
+import com.ghozy19.footballapps.utils.TestContextProvider
 import com.google.gson.Gson
 import org.junit.Test
 
@@ -30,11 +31,10 @@ class ClubPresenterTest {
     @Before
     fun setUp(){
         MockitoAnnotations.initMocks(this)
-        presenter = ClubPresenter(view,apiRepository,gson)
+        presenter = ClubPresenter(view,apiRepository,gson, TestContextProvider())
     }
 
     @Test
-    fun getClubList() {
         fun testGetClubList(){
             val clubs: MutableList<Club>  = mutableListOf()
             val response = ResponseClub(clubs)
@@ -52,4 +52,3 @@ class ClubPresenterTest {
 
         }
     }
-}

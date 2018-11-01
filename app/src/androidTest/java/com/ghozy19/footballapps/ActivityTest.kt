@@ -26,59 +26,50 @@ class ActivityTest {
     var activityRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun testAppBehaviour() {
-
-        //fragmentClub
-
-        onView(withId(bottom_navigation))
-                .check(matches(isDisplayed()))
-        onView(withId(clubs)).perform(click())
-        Thread.sleep(3000)
-
-        onView(withId(listspinner))
-                .check(matches(isDisplayed()))
-        onView(withId(listspinner)).perform(click())
-        onView(ViewMatchers.withText("Spanish La Liga")).perform(click())
-        Thread.sleep(3000)
-
-        onView(withId(rvViewMatch))
-                .check(matches(isDisplayed()))
-        onView(withId(rvViewMatch)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(0))
-        onView(withId(rvViewMatch)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-        Thread.sleep(3000)
-
-        onView(withId(add_to_favorite))
-                .check(matches(isDisplayed()))
-        onView(withId(add_to_favorite)).perform(click())
-        pressBack()
-
-
-
-//match
-        onView(withId(bottom_navigation))
-                .check(matches(isDisplayed()))
-        onView(withId(match)).perform(click())
-        onView(ViewMatchers.withText(R.string.last_match)).perform(click())
-        Thread.sleep(3000)
-
-        onView(withId(rvViewMatchLast)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(0))
-        onView(withId(rvViewMatchLast)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-        Thread.sleep(3000)
-
-        onView(withId(add_to_favorite))
-                .check(matches(isDisplayed()))
-        onView(withId(add_to_favorite)).perform(click())
-        pressBack()
-
-
-
-        //Favorite
+    fun testBotNav() {
         onView(withId(bottom_navigation))
                 .check(matches(isDisplayed()))
         onView(withId(favorite)).perform(click())
-        onView(withId(rvFavorite)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(0))
+        onView(withId(favorite))
+                .check(matches(isDisplayed()))
+
+        onView(withId(clubs)).perform(click())
+        onView(withId(clubs))
+                .check(matches(isDisplayed()))
+
+        onView(withId(match)).perform(click())
+        onView(withId(match))
+                .check(matches(isDisplayed()))
+
+
+    }
+
+    @Test
+    fun testMatch(){
+        onView(withId(bottom_navigation))
+                .check(matches(isDisplayed()))
+        onView(withId(match))
+                .check(matches(isDisplayed()))
+        onView(ViewMatchers.withText(R.string.last_match)).perform(click())
+        Thread.sleep(5000)
+
+        onView(withId(rvViewMatchLast)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(10))
+        onView(withId(rvViewMatchLast)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(10, click()))
+        Thread.sleep(5000)
+
+        onView(withId(add_to_favorite))
+                .check(matches(isDisplayed()))
+        onView(withId(add_to_favorite)).perform(click())
+        pressBack()
+    }
+
+    @Test
+    fun testFav() {
+        onView(withId(bottom_navigation))
+                .check(matches(isDisplayed()))
+        onView(withId(favorite)).perform(click())
         onView(withId(rvFavorite)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-        Thread.sleep(3000)
+        Thread.sleep(5000)
         onView(withId(add_to_favorite))
                 .check(matches(isDisplayed()))
         onView(withId(add_to_favorite)).perform(click())
@@ -88,16 +79,29 @@ class ActivityTest {
         onView(ViewMatchers.withText(R.string.match_fragment)).perform(click())
         onView(withId(rvFavoriteMatch)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(0))
         onView(withId(rvFavoriteMatch)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-        Thread.sleep(3000)
+        Thread.sleep(5000)
         onView(withId(add_to_favorite))
                 .check(matches(isDisplayed()))
         onView(withId(add_to_favorite)).perform(click())
         pressBack()
         onView(withId(swipeRefreshFavMatch)).perform(ViewActions.swipeDown())
-
-
-
-
     }
+
+@Test
+fun testSpinner(){
+    onView(withId(bottom_navigation))
+            .check(matches(isDisplayed()))
+    onView(withId(match)).perform(click())
+    onView(ViewMatchers.withText(R.string.last_match)).perform(click())
+    Thread.sleep(5000)
+
+    onView(withId(listspinner))
+            .check(matches(isDisplayed()))
+    onView(withId(listspinner)).perform(click())
+    onView(ViewMatchers.withText("Spanish La Liga")).perform(click())
+    Thread.sleep(5000)
+
+}
+
 
 }
