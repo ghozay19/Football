@@ -4,6 +4,7 @@ import com.ghozy19.footballapps.BuildConfig
 
 object TheSportDBApi {
 
+    //TODO jadi catatan reviewer disuruh search by id saja
     fun getClub(league: String?): String {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/search_all_teams.php?l=" + league
     }

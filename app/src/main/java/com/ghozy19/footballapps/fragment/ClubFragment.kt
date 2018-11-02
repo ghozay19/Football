@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.Spinner
 import com.ghozy19.footballapps.DetailClubActivity
+import com.ghozy19.footballapps.DetailClubsActivity
 import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.adapter.ClubAdapter
 import com.ghozy19.footballapps.api.ApiRepository
@@ -75,9 +76,14 @@ class ClubFragment : Fragment(), ClubView {
 
 
 
+//        adapter = ClubAdapter(ctx, club) {
+//            ctx.startActivity<DetailClubActivity>(
+//            "id" to it.teamId)
+//        }
+
         adapter = ClubAdapter(ctx, club) {
-            ctx.startActivity<DetailClubActivity>(
-            "id" to it.teamId)
+            ctx.startActivity<DetailClubsActivity>(
+                    "club" to it)
         }
 
 

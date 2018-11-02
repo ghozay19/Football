@@ -1,6 +1,5 @@
-
 <resources>
-    <string name="app_name">Football Apps</string>
+    <string name="app_name">KADE Apps</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -31,6 +30,8 @@
     <string name="add_to_favorite">Added to favorite</string>
     <string name="removed_from_favorite">Removed to favorite</string>
     <string name="match_fragment">match</string>
+    <string name="overview">Details</string>
+    <string name="player">Player</string>
 
 
     <array name="league">

@@ -11,9 +11,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ghozy19.footballapps.DetailClubActivity
+import com.ghozy19.footballapps.DetailClubsActivity
 import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.db.FavoriteClub
 import com.ghozy19.footballapps.db.database
+import com.ghozy19.footballapps.model.team.Club
 import kotlinx.android.synthetic.main.fragment_favorite_club.view.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
@@ -38,12 +40,22 @@ class FavoriteClubFragment : Fragment() {
         swipeRefreshLayout = view.swipeRefreshFav
 
 
-
+//        adapter = ClubFavAdapter(ctx, favClub) {
+//            ctx.startActivity<DetailClubActivity>(
+//                    "id" to it.teamId)
+//        }
 
         adapter = ClubFavAdapter(ctx, favClub) {
-            ctx.startActivity<DetailClubActivity>(
-                    "id" to it.teamId)
+            val club = Club(
+                    it.teamId,
+                    it.teamName,
+                    it.teamBadge,
+                    it.teamYears,
+                    it.teamDesc
+            )
+            ctx.startActivity<DetailClubsActivity>("club" to club)
         }
+
 
         list = view.rvFavorite
         list.layoutManager = LinearLayoutManager(activity)
