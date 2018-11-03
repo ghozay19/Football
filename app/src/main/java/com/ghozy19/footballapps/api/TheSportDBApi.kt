@@ -5,9 +5,20 @@ import com.ghozy19.footballapps.BuildConfig
 object TheSportDBApi {
 
     //TODO jadi catatan reviewer disuruh search by id saja
-    fun getClub(league: String?): String {
-        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/search_all_teams.php?l=" + league
+//    fun getClub(league: String?): String {
+//        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/search_all_teams.php?l=" + league
+//    }
+
+    fun getClub(leagueId: String?):String{
+//        https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=4328
+        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookup_all_teams.php?id=" + leagueId
     }
+
+    fun getPlayer(teamId: String?): String{
+//        https://www.thesportsdb.com/api/v1/json/1/lookup_all_players.php?id=133604
+        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookup_all_players.php?id=" + teamId
+    }
+
 
 
     fun getDetailClub(teamId: String?): String {

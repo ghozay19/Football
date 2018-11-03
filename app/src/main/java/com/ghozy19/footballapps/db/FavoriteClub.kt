@@ -5,8 +5,8 @@ class FavoriteClub(
         val teamId: String?,
         val teamName: String?,
         val teamBadge: String?,
-
-        val teamYears: String,
+        val teamYears: String?,
+        val teamStadium: String?,
         val teamDesc: String?) {
 
     companion object {
@@ -16,6 +16,7 @@ class FavoriteClub(
         const val TEAM_NAME: String = "TEAM_NAME"
         const val TEAM_BADGE: String = "TEAM_BADGE"
         const val TEAM_YEARS: String = "TEAM_YEARS"
+        const val TEAM_STADIUM: String = "TEAM_STADIUM"
         const val TEAM_DESC: String = "TEAM_DESC"
 
 

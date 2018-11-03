@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ghozy19.footballapps.DetailClubActivity
 import com.ghozy19.footballapps.DetailClubsActivity
 import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.db.FavoriteClub
@@ -39,18 +38,13 @@ class FavoriteClubFragment : Fragment() {
 
         swipeRefreshLayout = view.swipeRefreshFav
 
-
-//        adapter = ClubFavAdapter(ctx, favClub) {
-//            ctx.startActivity<DetailClubActivity>(
-//                    "id" to it.teamId)
-//        }
-
         adapter = ClubFavAdapter(ctx, favClub) {
             val club = Club(
                     it.teamId,
                     it.teamName,
                     it.teamBadge,
                     it.teamYears,
+                    it.teamStadium,
                     it.teamDesc
             )
             ctx.startActivity<DetailClubsActivity>("club" to club)

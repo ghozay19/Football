@@ -60,6 +60,7 @@ class ClubFragment : Fragment(), ClubView {
         presenter = ClubPresenter(this, request, gson)
 
         val spinnerItems = resources.getStringArray(R.array.league)
+        val spinnerItemsId = resources.getStringArray(R.array.id_league)
         spinner.adapter = ArrayAdapter(ctx, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -68,12 +69,12 @@ class ClubFragment : Fragment(), ClubView {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                leagueName = spinner.selectedItem.toString()
+                val getLeague = spinner.selectedItemPosition
+                leagueName = spinnerItemsId[getLeague].toString()
                 presenter.getClubList(leagueName)
             }
 
         }
-
 
 
 //        adapter = ClubAdapter(ctx, club) {

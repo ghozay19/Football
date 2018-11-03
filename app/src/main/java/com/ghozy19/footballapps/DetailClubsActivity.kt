@@ -67,12 +67,16 @@ class DetailClubsActivity : AppCompatActivity() {
         Glide.with(ctx).load(club.teamBadge).into(clubDetailLogo)
         clubDetailName.text = club.teamName
         clubDetailYears.text = club.teamFormedYear
+        clubDetailStadium.text = club.teamStadium
+
+        Log.d("nama stadiun? ", "dapet?"+club.teamStadium)
+
     }
 
     private fun viewPagerSetup(viewPager: ViewPager?) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addExt(ClubDescFragment.newInstance(club), "detail")
-        adapter.addExt(PlayerFragment.newInstance(club), "player")
+        adapter.addExt(PlayerFragment.newInstance(club.teamId!!), "player")
         viewPager?.adapter = adapter
     }
 
@@ -111,6 +115,7 @@ class DetailClubsActivity : AppCompatActivity() {
                         FavoriteClub.TEAM_NAME to club.teamName,
                         FavoriteClub.TEAM_BADGE to club.teamBadge,
                         FavoriteClub.TEAM_YEARS to club.teamFormedYear,
+                        FavoriteClub.TEAM_STADIUM to club.teamStadium,
                         FavoriteClub.TEAM_DESC to club.teamDescription)
                 Log.d("datanya masuk ? ", club.teamId)
 

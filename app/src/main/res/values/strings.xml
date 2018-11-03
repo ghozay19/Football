@@ -32,6 +32,8 @@
     <string name="match_fragment">match</string>
     <string name="overview">Details</string>
     <string name="player">Player</string>
+    <string name="weight_kg">Weight (Kg)</string>
+    <string name="height_m">Height (m)</string>
 
 
     <array name="league">

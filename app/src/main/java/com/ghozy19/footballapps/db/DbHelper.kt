@@ -25,6 +25,7 @@ class DbHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "db_favorite.db", nu
                 FavoriteClub.TEAM_NAME to TEXT,
                 FavoriteClub.TEAM_BADGE to TEXT,
                 FavoriteClub.TEAM_YEARS to TEXT,
+                FavoriteClub.TEAM_STADIUM to TEXT,
                 FavoriteClub.TEAM_DESC to TEXT
         )
 
