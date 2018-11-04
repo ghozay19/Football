@@ -1,4 +1,4 @@
-package com.ghozy19.footballapps.model.team
+package com.ghozy19.footballapps.model.club
 
 
 data class ResponseClub(

@@ -19,9 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailMatchActivity" />
-        <activity android:name=".DetailClubActivity" />
         <activity android:name=".DetailClubsActivity" />
-        <activity android:name=".DetailPlayerActivity"></activity>
+        <activity android:name=".DetailPlayerActivity" />
+        <activity android:name=".SearchMatchActivity"></activity>
     </application>
 
 </manifest>

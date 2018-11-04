@@ -1,12 +1,14 @@
 package com.ghozy19.footballapps.model.matchevent
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-
+@Parcelize
 data class EventsItem(
 
 	@field:SerializedName("intHomeShots")
-	val intHomeShots: Any? = null,
+	val intHomeShots: String? = null,
 
 	@field:SerializedName("strSport")
 	val strSport: String? = null,
@@ -27,7 +29,7 @@ data class EventsItem(
 	val strHomeLineupForward: String? = null,
 
 	@field:SerializedName("strTVStation")
-	val strTVStation: Any? = null,
+	val strTVStation: String? = null,
 
 	@field:SerializedName("strHomeGoalDetails")
 	val strHomeGoalDetails: String? = null,
@@ -57,7 +59,7 @@ data class EventsItem(
 	val dateEvent: String? = null,
 
 	@field:SerializedName("strCountry")
-	val strCountry: Any? = null,
+	val strCountry: String? = null,
 
 	@field:SerializedName("strAwayTeam")
 	var strAwayTeam: String? = null,
@@ -72,7 +74,7 @@ data class EventsItem(
 	val strHomeFormation: String? = null,
 
 	@field:SerializedName("strMap")
-	val strMap: Any? = null,
+	val strMap: String? = null,
 
 	@field:SerializedName("idAwayTeam")
 	val idAwayTeam: String? = null,
@@ -81,22 +83,22 @@ data class EventsItem(
 	val strAwayRedCards: String? = null,
 
 	@field:SerializedName("strBanner")
-	val strBanner: Any? = null,
+	val strBanner: String? = null,
 
 	@field:SerializedName("strFanart")
-	val strFanart: Any? = null,
+	val strFanart: String? = null,
 
 	@field:SerializedName("strDescriptionEN")
-	val strDescriptionEN: Any? = null,
+	val strDescriptionEN: String? = null,
 
 	@field:SerializedName("strResult")
-	val strResult: Any? = null,
+	val strResult: String? = null,
 
 	@field:SerializedName("strCircuit")
-	val strCircuit: Any? = null,
+	val strCircuit: String? = null,
 
 	@field:SerializedName("intAwayShots")
-	val intAwayShots: Any? = null,
+	val intAwayShots: String? = null,
 
 	@field:SerializedName("strFilename")
 	val strFilename: String? = null,
@@ -144,7 +146,7 @@ data class EventsItem(
     var strHomeTeam: String? = null,
 
 	@field:SerializedName("strThumb")
-	val strThumb: Any? = null,
+	val strThumb: String? = null,
 
 	@field:SerializedName("strLeague")
 	val strLeague: String? = null,
@@ -153,8 +155,8 @@ data class EventsItem(
 	var intAwayScore: String? = null,
 
 	@field:SerializedName("strCity")
-	val strCity: Any? = null,
+	val strCity: String? = null,
 
 	@field:SerializedName("strPoster")
-	val strPoster: Any? = null
-)
+	val strPoster: String? = null
+) : Parcelable

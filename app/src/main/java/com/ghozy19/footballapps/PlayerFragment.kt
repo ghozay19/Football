@@ -13,18 +13,17 @@ import android.widget.ProgressBar
 import com.ghozy19.footballapps.adapter.PlayerAdapter
 import com.ghozy19.footballapps.api.ApiRepository
 import com.ghozy19.footballapps.model.Player
-import com.ghozy19.footballapps.model.team.Club
 import com.ghozy19.footballapps.utils.invisible
 import com.ghozy19.footballapps.utils.visible
-import com.ghozy19.footballapps.view.PlayerPresenter
-import com.ghozy19.footballapps.view.PlayerView
+import com.ghozy19.footballapps.view.player.PlayerPresenter
+import com.ghozy19.footballapps.view.player.PlayerView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_player.view.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.ctx
 
 
-class PlayerFragment : Fragment(),PlayerView {
+class PlayerFragment : Fragment(), PlayerView {
 
     private lateinit var listClub: RecyclerView
     private lateinit var progressBar: ProgressBar

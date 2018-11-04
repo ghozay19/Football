@@ -25,7 +25,6 @@ import com.ghozy19.footballapps.view.lastMatch.LastMatchPresenter
 import com.ghozy19.footballapps.view.lastMatch.LastMatchView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_last_match.view.*
-import kotlinx.android.synthetic.main.fragment_next_match.view.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh

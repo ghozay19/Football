@@ -79,9 +79,7 @@ class NextMatchFragment : Fragment(), NextMatchView {
 
         adapter = MatchAdapter(ctx, match) {
             ctx.startActivity<DetailMatchActivity>(
-                    "idEvent" to  it.idEvent,
-            "idHome" to it.idHomeTeam,
-            "idAway" to it.idAwayTeam
+                    "idEvent" to  it
             )
         }
 

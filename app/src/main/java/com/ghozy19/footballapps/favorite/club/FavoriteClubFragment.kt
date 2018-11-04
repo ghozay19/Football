@@ -14,7 +14,7 @@ import com.ghozy19.footballapps.DetailClubsActivity
 import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.db.FavoriteClub
 import com.ghozy19.footballapps.db.database
-import com.ghozy19.footballapps.model.team.Club
+import com.ghozy19.footballapps.model.club.Club
 import kotlinx.android.synthetic.main.fragment_favorite_club.view.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select

@@ -61,21 +61,13 @@ class ActivityTest {
                 .check(matches(isDisplayed()))
         onView(withId(add_to_favorite)).perform(click())
         pressBack()
-    }
 
-    @Test
-    fun testFav() {
+
+        //tess favorit
+
         onView(withId(bottom_navigation))
                 .check(matches(isDisplayed()))
         onView(withId(favorite)).perform(click())
-        onView(withId(rvFavorite)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-        Thread.sleep(5000)
-        onView(withId(add_to_favorite))
-                .check(matches(isDisplayed()))
-        onView(withId(add_to_favorite)).perform(click())
-        pressBack()
-        onView(withId(swipeRefreshFav)).perform(ViewActions.swipeDown())
-
         onView(ViewMatchers.withText(R.string.match_fragment)).perform(click())
         onView(withId(rvFavoriteMatch)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(0))
         onView(withId(rvFavoriteMatch)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))

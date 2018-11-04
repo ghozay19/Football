@@ -12,8 +12,8 @@ import com.bumptech.glide.Glide
 import com.ghozy19.footballapps.api.ApiRepository
 import com.ghozy19.footballapps.db.FavoriteMatch
 import com.ghozy19.footballapps.db.database
+import com.ghozy19.footballapps.model.club.Club
 import com.ghozy19.footballapps.model.matchevent.EventsItem
-import com.ghozy19.footballapps.model.team.Club
 import com.ghozy19.footballapps.utils.*
 import com.ghozy19.footballapps.view.detailMatch.DetailMatchPresenter
 import com.ghozy19.footballapps.view.detailMatch.DetailMatchView
@@ -32,13 +32,11 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
 
     private lateinit var progressBar: ProgressBar
     private lateinit var presenter: DetailMatchPresenter
-
-    private lateinit var idEvent: String
-
+    private lateinit var events: EventsItem
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
 
-    private lateinit var events: EventsItem
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,18 +45,14 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         supportActionBar?.title = getString(R.string.detailMatch)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        events = EventsItem()
+        events = intent.getParcelableExtra("idEvent")
 
-        val intent = intent
-        idEvent = intent.getStringExtra("idEvent")
-
-        Log.d("apakah ada id eventnya?", idEvent)
         progressBar = progressBarDm
 
         val request = ApiRepository()
         val gson = Gson()
         presenter = DetailMatchPresenter(this, request, gson)
-        presenter.getDetailMatch(idEvent)
+        presenter.getDetailMatch(events.idEvent)
 
         favoriteState()
 
@@ -173,12 +167,11 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         database.use {
             val result = select(FavoriteMatch.TABLE_FAVORITE_MATCH)
                     .whereArgs("(EVENT_ID = {idEvent})",
-                            "idEvent" to idEvent)
+                            "idEvent" to events.idEvent!!)
             val favorite = result.parseList(classParser<FavoriteMatch>())
             if (!favorite.isEmpty()) isFavorite = true
         }
     }
-
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -213,7 +206,6 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
             database.use {
 
 
-
                 insert(FavoriteMatch.TABLE_FAVORITE_MATCH,
                         FavoriteMatch.EVENT_ID to events.idEvent.toString(),
                         FavoriteMatch.HOME_TEAM_NAME to events.strHomeTeam.toString(),
@@ -235,7 +227,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
         try {
             database.use {
                 delete(FavoriteMatch.TABLE_FAVORITE_MATCH, "(EVENT_ID = {idEvent})",
-                        "idEvent" to idEvent)
+                        "idEvent" to events.idEvent!!)
             }
             snackbar(progressBar, getString(R.string.removed_from_favorite)).show()
 

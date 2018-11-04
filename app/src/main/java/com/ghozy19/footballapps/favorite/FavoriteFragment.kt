@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.favorite.club.FavoriteClubFragment
 import com.ghozy19.footballapps.favorite.match.FavoriteMatchFragment
-import com.ghozy19.footballapps.fragment.match.LastMatchFragment
 
 class FavoriteFragment : Fragment() {
 

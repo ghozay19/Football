@@ -4,41 +4,36 @@ import com.ghozy19.footballapps.BuildConfig
 
 object TheSportDBApi {
 
-    //TODO jadi catatan reviewer disuruh search by id saja
-//    fun getClub(league: String?): String {
-//        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/search_all_teams.php?l=" + league
-//    }
 
     fun getClub(leagueId: String?):String{
-//        https://www.thesportsdb.com/api/v1/json/1/lookup_all_teams.php?id=4328
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookup_all_teams.php?id=" + leagueId
     }
 
     fun getPlayer(teamId: String?): String{
-//        https://www.thesportsdb.com/api/v1/json/1/lookup_all_players.php?id=133604
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookup_all_players.php?id=" + teamId
     }
-
 
 
     fun getDetailClub(teamId: String?): String {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookupteam.php?id=" + teamId
     }
 
+    fun getSearchEvent(query: String?):String{
+        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/searchevents.php?e=" + query
+    }
+    fun getSearchClub(query: String?):String{
+        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/searchteams.php?t=" + query
+    }
 
     fun getLeagueNextMatch(idLeagueNext: String?): String {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/eventsnextleague.php?id=" + idLeagueNext
     }
 
-
-    //    https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=4328
     fun getLeagueLastMatch(idLeagueLast: String?): String {
         return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/eventspastleague.php?id=" + idLeagueLast
 
     }
 
-
-////        https://www.thesportsdb.com/api/v1/json/1/lookupevent.php?id=441613
         fun getMatchDetail(idEvent: String?) : String{
     return  BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" +"/lookupevent.php?id=" + idEvent
 

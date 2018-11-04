@@ -1,4 +1,4 @@
-package com.ghozy19.footballapps.view
+package com.ghozy19.footballapps.view.player
 
 import com.ghozy19.footballapps.model.Player
 

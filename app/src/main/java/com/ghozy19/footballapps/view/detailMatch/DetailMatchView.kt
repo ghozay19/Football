@@ -1,7 +1,7 @@
 package com.ghozy19.footballapps.view.detailMatch
 
+import com.ghozy19.footballapps.model.club.Club
 import com.ghozy19.footballapps.model.matchevent.EventsItem
-import com.ghozy19.footballapps.model.team.Club
 
 interface DetailMatchView {
     fun showLoading()

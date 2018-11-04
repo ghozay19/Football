@@ -7,12 +7,11 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-
+import android.view.*
 import com.ghozy19.footballapps.R
-import kotlinx.android.synthetic.main.fragment_match.*
+import com.ghozy19.footballapps.SearchMatchActivity
+import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.ctx
 
 class MatchFragment : Fragment() {
 
@@ -24,6 +23,8 @@ class MatchFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_match, container, false)
+
+        setHasOptionsMenu(true)
 
         mViewPager = view.findViewById(R.id.viewpager_main) as ViewPager
         mViewPager.adapter = sliderAdapter(childFragmentManager)
@@ -69,6 +70,23 @@ class MatchFragment : Fragment() {
 
         override fun getPageTitle(position: Int): CharSequence? {
             return tabs[position]
+        }
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        inflater?.inflate(R.menu.menu_search, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId){
+            R.id.searchMenuView -> {
+                ctx.startActivity<SearchMatchActivity>()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

@@ -15,7 +15,6 @@ import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.db.FavoriteMatch
 import com.ghozy19.footballapps.db.database
 import kotlinx.android.synthetic.main.fragment_favorite_match.view.*
-import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.rowParser
 import org.jetbrains.anko.db.select
 import org.jetbrains.anko.startActivity

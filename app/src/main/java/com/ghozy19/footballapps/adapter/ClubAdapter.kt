@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.ghozy19.footballapps.R
-import com.ghozy19.footballapps.model.team.Club
+import com.ghozy19.footballapps.model.club.Club
 import kotlinx.android.synthetic.main.club_item.view.*
 
 class ClubAdapter(private val context: Context, private val club: List<Club>, private val listener: (Club) -> Unit)

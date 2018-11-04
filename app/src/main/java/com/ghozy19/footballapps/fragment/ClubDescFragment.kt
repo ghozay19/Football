@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ghozy19.footballapps.R
-import com.ghozy19.footballapps.model.team.Club
+import com.ghozy19.footballapps.model.club.Club
 import kotlinx.android.synthetic.main.fragment_club_desc.*
 
 

@@ -2,7 +2,6 @@ package com.ghozy19.footballapps
 
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
@@ -14,26 +13,22 @@ import com.ghozy19.footballapps.adapter.ViewPagerAdapter
 import com.ghozy19.footballapps.db.FavoriteClub
 import com.ghozy19.footballapps.db.database
 import com.ghozy19.footballapps.fragment.ClubDescFragment
-import com.ghozy19.footballapps.model.team.Club
+import com.ghozy19.footballapps.model.club.Club
 import kotlinx.android.synthetic.main.activity_detail_clubs.*
 import org.jetbrains.anko.ctx
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
-import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.toast
 
 class DetailClubsActivity : AppCompatActivity() {
 
     private lateinit var club: Club
-    private lateinit var mViewPager: ViewPager
-    private lateinit var mTablayout: TabLayout
 
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
 
-//    private lateinit var id:String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
