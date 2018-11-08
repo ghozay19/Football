@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.Spinner
 import com.ghozy19.footballapps.*
+import com.ghozy19.footballapps.activity.DetailMatchActivity
 import com.ghozy19.footballapps.adapter.MatchAdapter
 import com.ghozy19.footballapps.api.ApiRepository
 import com.ghozy19.footballapps.model.matchevent.EventsItem

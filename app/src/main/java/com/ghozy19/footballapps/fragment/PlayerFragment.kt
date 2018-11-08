@@ -1,4 +1,4 @@
-package com.ghozy19.footballapps
+package com.ghozy19.footballapps.fragment
 
 
 import android.os.Bundle
@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import com.ghozy19.footballapps.activity.DetailPlayerActivity
+import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.adapter.PlayerAdapter
 import com.ghozy19.footballapps.api.ApiRepository
 import com.ghozy19.footballapps.model.Player
@@ -36,7 +38,7 @@ class PlayerFragment : Fragment(), PlayerView {
     private lateinit var teamId: String
 
     companion object {
-        fun newInstance(teamId: String): PlayerFragment{
+        fun newInstance(teamId: String): PlayerFragment {
             val fragment = PlayerFragment()
             fragment.teamId = teamId
 
@@ -66,7 +68,7 @@ class PlayerFragment : Fragment(), PlayerView {
         }
 
 
-        listClub = view!!.rvViewPlayer
+        listClub = view.rvViewPlayer
         listClub.layoutManager = LinearLayoutManager(context)
         listClub.adapter = adapter
 
@@ -81,7 +83,7 @@ class PlayerFragment : Fragment(), PlayerView {
     }
 
     override fun showPlayer(data: List<Player>) {
-        Log.i("On Show Match : ", "Data Size : ${data?.size}")
+        Log.i("On Show Match : ", "Data Size : ${data.size}")
 //    swipeRefreshLayout.isRefreshing = false
         player.clear()
         player.addAll(data)

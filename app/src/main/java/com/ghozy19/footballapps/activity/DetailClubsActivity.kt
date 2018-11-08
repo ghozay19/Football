@@ -1,4 +1,4 @@
-package com.ghozy19.footballapps
+package com.ghozy19.footballapps.activity
 
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
@@ -9,10 +9,12 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import com.bumptech.glide.Glide
+import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.adapter.ViewPagerAdapter
 import com.ghozy19.footballapps.db.FavoriteClub
 import com.ghozy19.footballapps.db.database
 import com.ghozy19.footballapps.fragment.ClubDescFragment
+import com.ghozy19.footballapps.fragment.PlayerFragment
 import com.ghozy19.footballapps.model.club.Club
 import kotlinx.android.synthetic.main.activity_detail_clubs.*
 import org.jetbrains.anko.ctx
@@ -64,14 +66,14 @@ class DetailClubsActivity : AppCompatActivity() {
         clubDetailYears.text = club.teamFormedYear
         clubDetailStadium.text = club.teamStadium
 
-        Log.d("nama stadiun? ", "dapet?"+club.teamStadium)
+        Log.d("nama stadium? ", "dapet?"+club.teamStadium)
 
     }
 
     private fun viewPagerSetup(viewPager: ViewPager?) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addExt(ClubDescFragment.newInstance(club), "detail")
-        adapter.addExt(PlayerFragment.newInstance(club.teamId!!), "player")
+        adapter.addExt(ClubDescFragment.newInstance(club), getString(R.string.detail))
+        adapter.addExt(PlayerFragment.newInstance(club.teamId!!), getString(R.string.player))
         viewPager?.adapter = adapter
     }
 

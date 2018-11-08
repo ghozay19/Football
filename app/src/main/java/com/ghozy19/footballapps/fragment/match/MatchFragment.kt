@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
 import android.view.*
 import com.ghozy19.footballapps.R
-import com.ghozy19.footballapps.SearchMatchActivity
+import com.ghozy19.footballapps.activity.SearchMatchActivity
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.support.v4.ctx
 

@@ -10,7 +10,7 @@ import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SearchView
-import com.ghozy19.footballapps.DetailClubsActivity
+import com.ghozy19.footballapps.activity.DetailClubsActivity
 import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.adapter.ClubAdapter
 import com.ghozy19.footballapps.api.ApiRepository
@@ -118,7 +118,7 @@ class ClubFragment : Fragment(), ClubView {
     }
 
     override fun showClub(data: List<Club>) {
-        Log.i("On Show Match : ", "Data Size : ${data?.size}")
+        Log.i("On Show Match : ", "Data Size : ${data.size}")
         swipeRefresh.isRefreshing = false
         club.clear()
         club.addAll(data)

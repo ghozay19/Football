@@ -28,7 +28,7 @@ private val context: CoroutineContextProvider = CoroutineContextProvider()
             }
             view.hideLoading()
             view.showLastMatch(data.await().events)
-            if (data.await().events?.size == null) {
+            if (data.await().events.size == null) {
                 view.showNull()
             }
 

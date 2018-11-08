@@ -1,4 +1,4 @@
-package com.ghozy19.footballapps
+package com.ghozy19.footballapps.activity
 
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.ProgressBar
 import com.bumptech.glide.Glide
+import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.api.ApiRepository
 import com.ghozy19.footballapps.db.FavoriteMatch
 import com.ghozy19.footballapps.db.database
@@ -130,7 +131,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
             tvHomeSubs.text = data.get(index = 0).strHomeLineupSubstitutes?.replace(";", "\n")
             tvHomeYellow.text = data.get(index = 0).strHomeYellowCards?.replace(";", "\n")
             tvHomeRed.text = data.get(index = 0).strHomeRedCards?.replace(";", "\n")
-            tvHomeOnTarget.text = data.get(index = 0).intHomeShots as CharSequence?
+            tvHomeOnTarget.text = data.get(index = 0).intHomeShots
 
 //AwayTeam
             tvScoreAway.text = data.get(index = 0).intAwayScore
@@ -142,7 +143,7 @@ class DetailMatchActivity : AppCompatActivity(), DetailMatchView {
             tvAwaySubs.text = data.get(index = 0).strAwayLineupSubstitutes?.replace(";", "\n")
             tvAwayYellow.text = data.get(index = 0).strAwayYellowCards?.replace(";", "\n")
             tvAwayRed.text = data.get(index = 0).strAwayRedCards?.replace(";", "\n")
-            tvAwayOnTarget.text = data.get(index = 0).intAwayShots as CharSequence?
+            tvAwayOnTarget.text = data.get(index = 0).intAwayShots
         } else {
             tvNameLeague.text = data?.get(index = 0)?.strLeague.toString()
 

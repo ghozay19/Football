@@ -27,7 +27,7 @@ class NextMatchPresenter(
             }
             view.hideLoading()
             view.showNextMatch(data.await().events)
-            if (data.await().events?.size == null) {
+            if (data.await().events.size == null) {
                 view.showNull()
             }
 

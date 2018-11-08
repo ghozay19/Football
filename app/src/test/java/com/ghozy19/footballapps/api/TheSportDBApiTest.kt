@@ -38,4 +38,11 @@ class TheSportDBApiTest {
         val url = "https://www.thesportsdb.com/api/v1/json/1/lookupevent.php?id=576561"
         assertEquals(url, TheSportDBApi.getMatchDetail("576561"))
     }
+
+    @Test
+    fun getSearchClub(){
+        val url ="https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=arsenal"
+        assertEquals(url, TheSportDBApi.getSearchClub("arsenal"))
+
+    }
 }

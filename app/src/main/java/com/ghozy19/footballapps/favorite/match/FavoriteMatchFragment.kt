@@ -10,10 +10,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ghozy19.footballapps.DetailMatchActivity
 import com.ghozy19.footballapps.R
+import com.ghozy19.footballapps.activity.DetailMatchActivity
 import com.ghozy19.footballapps.db.FavoriteMatch
 import com.ghozy19.footballapps.db.database
+import com.ghozy19.footballapps.model.matchevent.EventsItem
 import kotlinx.android.synthetic.main.fragment_favorite_match.view.*
 import org.jetbrains.anko.db.rowParser
 import org.jetbrains.anko.db.select
@@ -40,8 +41,16 @@ class FavoriteMatchFragment : Fragment() {
 
 
         adapter = MatchFavAdapter(ctx, favMatch) {
-            ctx.startActivity<DetailMatchActivity>(
-                    "idEvent" to it.eventId)
+            val events = EventsItem(
+                   idEvent =  it.eventId,
+                    strHomeTeam = it.homeTeamName,
+                    intHomeScore = it.homeTeamScore,
+                    strAwayTeam = it.awayTeamName,
+                    intAwayScore = it.awayTeamScore,
+                    strDate = it.dateEvent,
+                    strTime = it.timeEvent
+            )
+            ctx.startActivity<DetailMatchActivity>("idEvent" to events)
         }
 
         list = view.rvFavoriteMatch

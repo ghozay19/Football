@@ -1,8 +1,9 @@
-package com.ghozy19.footballapps
+package com.ghozy19.footballapps.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
+import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.model.Player
 import kotlinx.android.synthetic.main.activity_detail_player.*
 import org.jetbrains.anko.ctx

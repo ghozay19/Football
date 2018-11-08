@@ -34,6 +34,9 @@
     <string name="player">Player</string>
     <string name="weight_kg">Weight (Kg)</string>
     <string name="height_m">Height (m)</string>
+    <string name="mf">MIDFIELDER</string>
+    <string name="nodataavailable">No data Available</string>
+    <string name="detail">detail</string>
 
 
     <array name="league">

@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ghozy19.footballapps.DetailClubsActivity
+import com.ghozy19.footballapps.activity.DetailClubsActivity
 import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.db.FavoriteClub
 import com.ghozy19.footballapps.db.database

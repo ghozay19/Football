@@ -1,4 +1,4 @@
-package com.ghozy19.footballapps
+package com.ghozy19.footballapps.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.Menu
 import android.widget.SearchView
+import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.adapter.MatchSearchAdapter
 import com.ghozy19.footballapps.api.ApiRepository
 import com.ghozy19.footballapps.model.matchevent.EventsItem
@@ -30,8 +31,6 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         val request = ApiRepository()
         val gson = Gson()
         presenter = SearchMatchPresenter(this, request, gson)
@@ -46,6 +45,7 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
         recyclerView.layoutManager = LinearLayoutManager(ctx)
         recyclerView.adapter = adapter
 
+        presenter.getEventListSearch()
 
     }
 
@@ -61,17 +61,19 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
 
         view.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                presenter.getEventListSearch(query)
+                presenter.getEventListSearch(query.toString())
                 return false
             }
 
             override fun onQueryTextChange(query: String?): Boolean {
-                presenter.getEventListSearch(query)
+                presenter.getEventListSearch(query.toString())
+
+
                 return false
             }
         })
 
-        return super.onCreateOptionsMenu(menu)
+        return true
 
     }
 
@@ -86,7 +88,12 @@ class SearchMatchActivity : AppCompatActivity(), SearchMatchView {
     override fun showEventsList(data: List<EventsItem>) {
         hideLoading()
         match.clear()
-        match.addAll(data)
+
+        data.forEach {
+            if (it.strSport.equals("Soccer")) {
+                match.add(it)
+            }
+        }
         adapter.notifyDataSetChanged()
 
         Log.d("data", "kemana datanya" + data)

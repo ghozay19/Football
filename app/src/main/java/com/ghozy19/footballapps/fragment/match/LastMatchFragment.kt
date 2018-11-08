@@ -14,7 +14,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.Spinner
-import com.ghozy19.footballapps.DetailMatchActivity
+import com.ghozy19.footballapps.activity.DetailMatchActivity
 import com.ghozy19.footballapps.R
 import com.ghozy19.footballapps.adapter.MatchAdapter
 import com.ghozy19.footballapps.api.ApiRepository
@@ -79,9 +79,7 @@ class LastMatchFragment : Fragment(), LastMatchView {
 
         adapter = MatchAdapter(ctx, match) {
             ctx.startActivity<DetailMatchActivity>(
-                    "idEvent" to it.idEvent,
-                    "idHome" to it.idHomeTeam,
-                    "idAway" to it.idAwayTeam
+                    "idEvent" to it
             )
         }
 
@@ -108,7 +106,7 @@ class LastMatchFragment : Fragment(), LastMatchView {
     }
 
     override fun showNull() {
-        toast("No data Available")
+        toast(getString(R.string.nodataavailable))
     }
 
     override fun showLastMatch(data: List<EventsItem>?) {

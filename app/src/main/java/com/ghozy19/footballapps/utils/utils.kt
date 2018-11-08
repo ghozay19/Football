@@ -32,7 +32,7 @@ fun toGMTFormat(date: String?, time: String?): Date? {
 
 var locale = Locale("ID")
 fun changeFormatDate(date: Date?): String? = with(date ?: Date()){
-    SimpleDateFormat("EEEE, dd MMMM yyyy", locale).format(this)
+    SimpleDateFormat("EEE, dd MMM yyyy", locale).format(this)
 }
 
 

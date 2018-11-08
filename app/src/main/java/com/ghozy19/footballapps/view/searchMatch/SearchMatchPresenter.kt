@@ -14,7 +14,7 @@ class SearchMatchPresenter(
         private val gson: Gson,
         private val context: CoroutineContextProvider = CoroutineContextProvider()) {
 
-    fun getEventListSearch(query: String?) {
+    fun getEventListSearch(query: String ="") {
         view.showLoading()
 
         async(context.main){
